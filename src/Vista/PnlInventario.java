@@ -40,8 +40,8 @@ public class PnlInventario extends javax.swing.JPanel {
         inicializarTabla();
         configurarRadioBotones();
         accionBotones();
-        this.conInventario = new ControladorInventario(frmMenuPrincipal, this);
         this.frmMenuPrincipal = frmMenuPrincipal;
+        this.conInventario = new ControladorInventario(frmMenuPrincipal, this);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentShown(java.awt.event.ComponentEvent e){

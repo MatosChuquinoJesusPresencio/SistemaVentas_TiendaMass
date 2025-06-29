@@ -1,8 +1,6 @@
 
 package Modelo.Entidades;
 
-import java.time.LocalDateTime;
-
 /**
  *
  * @author Jesus

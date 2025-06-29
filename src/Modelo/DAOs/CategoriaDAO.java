@@ -5,7 +5,6 @@ import Modelo.BDatos.ComponentesBD;
 import Modelo.Entidades.Categoria;
 import Modelo.Estructuras.ArregloDinamico;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 /**
  *

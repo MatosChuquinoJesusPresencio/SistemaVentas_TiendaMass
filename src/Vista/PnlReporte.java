@@ -3,7 +3,6 @@ package Vista;
 
 import Controlador.ControladorReporte;
 import Modelo.Entidades.DetalleVenta;
-import Modelo.Entidades.SesionUsuario;
 import Modelo.Entidades.Venta;
 import Modelo.Estructuras.ArregloDinamico;
 import static Utilidades.GeneraraDatos.obtenerFecha;

@@ -53,8 +53,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnVenta = new javax.swing.JButton();
         btnCompra = new javax.swing.JButton();
         btnInventario = new javax.swing.JButton();
-        btnReporte = new javax.swing.JButton();
         btnAdministrar = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         pnlContenido = new javax.swing.JPanel();
@@ -108,20 +108,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnReporte.setBackground(new java.awt.Color(232, 232, 232));
-        btnReporte.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        btnReporte.setForeground(new java.awt.Color(0, 61, 117));
-        btnReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reportes.png"))); // NOI18N
-        btnReporte.setText("REPORTE");
-        btnReporte.setEnabled(false);
-        btnReporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnReporte.setPreferredSize(new java.awt.Dimension(200, 80));
-        btnReporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteActionPerformed(evt);
-            }
-        });
-
         btnAdministrar.setBackground(new java.awt.Color(232, 232, 232));
         btnAdministrar.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         btnAdministrar.setForeground(new java.awt.Color(0, 61, 117));
@@ -133,6 +119,20 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnAdministrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdministrarActionPerformed(evt);
+            }
+        });
+
+        btnReporte.setBackground(new java.awt.Color(232, 232, 232));
+        btnReporte.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
+        btnReporte.setForeground(new java.awt.Color(0, 61, 117));
+        btnReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reportes.png"))); // NOI18N
+        btnReporte.setText("REPORTE");
+        btnReporte.setEnabled(false);
+        btnReporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnReporte.setPreferredSize(new java.awt.Dimension(200, 80));
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
             }
         });
 

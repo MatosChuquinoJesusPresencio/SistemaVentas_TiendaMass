@@ -4,7 +4,6 @@ package Controlador;
 import Modelo.DAOs.DetalleVentaDAO;
 import Modelo.DAOs.VentaDAO;
 import Modelo.Entidades.DetalleVenta;
-import Modelo.Entidades.SesionUsuario;
 import Modelo.Entidades.Venta;
 import Modelo.Estructuras.ArbolBB;
 import Modelo.Estructuras.ArregloDinamico;

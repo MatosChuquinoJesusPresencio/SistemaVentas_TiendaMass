@@ -25,14 +25,14 @@ public class SesionUsuario {
         this.nombreRol = nombreRol;
     }
     
-    public Integer getIdUsuario() {return idUsuario;}
+    public int getIdUsuario() {return idUsuario;}
     public int getIdEmpleado() {return idEmpleado;}
     public String getNombreUsuario() {return nombreUsuario;}
     public String getNombreEmplado() {return nombreEmplado;}
     public boolean getHabilitado() {return habilitado;}
     public String getNombreRol() {return nombreRol;}
     
-    public void setIdUsuario(Integer idUsuario) {this.idUsuario = idUsuario;}
+    public void setIdUsuario(int idUsuario) {this.idUsuario = idUsuario;}
     public void setIdEmpleado(int idEmpleado) {this.idEmpleado = idEmpleado;}
     public void setNombreUsuario(String nombreUsuario) {this.nombreUsuario = nombreUsuario;}
     public void setNombreEmplado(String nombreEmplado) {this.nombreEmplado = nombreEmplado;}

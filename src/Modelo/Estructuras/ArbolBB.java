@@ -121,8 +121,4 @@ public class ArbolBB {
     public NodoABB getRaiz() {return raiz;}
 
     public void setRaiz(NodoABB raiz) {this.raiz = raiz;}
-
-    public void limpiar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
