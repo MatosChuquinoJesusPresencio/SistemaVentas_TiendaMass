@@ -9,9 +9,11 @@ import Modelo.Entidades.Inventario;
 import Modelo.Entidades.Producto;
 import Modelo.Estructuras.ArregloDinamico;
 import Utilidades.Mensajes;
+import Utilidades.Validar;
 import Vista.FrmMenuPrincipal;
 import Vista.PnlInventario;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -218,4 +220,49 @@ public class ControladorInventario {
             Mensajes.mostrarError(frmMenuPrincipal, "Error", e.getMessage());
         }
     }
+    
+    public void actualizarStock(int idProducto) {
+        if (idProducto == -1) return;
+
+        String entrada = JOptionPane.showInputDialog("Nuevo stock actual");
+        if (!Validar.entradaValida(entrada)) return;
+
+        try {
+            int nuevoStock = Integer.parseInt(entrada);
+            if (nuevoStock <= 0) {
+                Mensajes.mostrarAd(frmMenuPrincipal, "El stock debe ser mayor a 0", "Dato inválido");
+                return;
+            }
+            inventarioDAO.actualizarStockActual(idProducto, nuevoStock);
+            Mensajes.mostrarInfo(frmMenuPrincipal, "Éxito", "Stock actual actualizado correctamente.");
+            actualizarInventario();
+        } catch (NumberFormatException e) {
+            Mensajes.mostrarError(frmMenuPrincipal, "Error", "Ingrese un número válido.");
+        } catch (SQLException e) {
+            Mensajes.mostrarError(frmMenuPrincipal, "Error", e.getMessage());
+        }
+    }
+
+    public void actualizarStockMinimo(int idProducto) {
+        if (idProducto == -1) return;
+
+        String entrada = JOptionPane.showInputDialog("Nuevo stock mínimo");
+        if (Validar.entradaValida(entrada)) return;
+
+        try {
+            int nuevoStockMinimo = Integer.parseInt(entrada);
+            if (nuevoStockMinimo <= 0) {
+                Mensajes.mostrarAd(frmMenuPrincipal, "El stock mínimo debe ser mayor a 0", "Dato inválido");
+                return;
+            }
+            inventarioDAO.actualizarStockMinimo(idProducto, nuevoStockMinimo);
+            Mensajes.mostrarInfo(frmMenuPrincipal, "Éxito", "Stock mínimo actualizado correctamente.");
+            actualizarInventario();
+        } catch (NumberFormatException e) {
+            Mensajes.mostrarError(frmMenuPrincipal, "Error", "Ingrese un número válido.");
+        } catch (SQLException e) {
+            Mensajes.mostrarError(frmMenuPrincipal, "Error", e.getMessage());
+        }
+    }
+
 }

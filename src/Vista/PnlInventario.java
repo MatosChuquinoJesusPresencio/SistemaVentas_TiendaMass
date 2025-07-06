@@ -54,17 +54,13 @@ public class PnlInventario extends javax.swing.JPanel {
                 txtIngreseDato.setText("");
             }
         });
-        btnBuscar.addActionListener(e -> {
-            try {
-                buscarInventario();
-            } catch (SQLException ex) {
-                Logger.getLogger(PnlInventario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        btnBuscar.addActionListener(e -> buscarInventario());
         btnReiniciar.addActionListener(e -> {
             conInventario.actualizarInventario();
             txtIngreseDato.setText("");
         });
+        btnStock.addActionListener(e -> conInventario.actualizarStock(obtenerID()));
+        btnStockMinimo.addActionListener(e -> conInventario.actualizarStockMinimo(obtenerID()));
     } 
     
     private void configurarRadioBotones(){
@@ -143,7 +139,7 @@ public class PnlInventario extends javax.swing.JPanel {
         }
     }
     
-    private void buscarInventario() throws SQLException{
+    private void buscarInventario(){
         String criterio = getTextoSeleccionado(btnGroupBotones);
         String buscar = obtenerValorBusqueda();
         if (btnGroupBotones.getSelection() != null){
@@ -185,6 +181,16 @@ public class PnlInventario extends javax.swing.JPanel {
         }
         return null; 
     }
+    
+    public int obtenerID() {
+        int filaSeleccionada = tableInventario.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            return Integer.parseInt(modeloTabla.getValueAt(filaSeleccionada, 0).toString());
+        } else {
+            Mensajes.mostrarAd(frmMenuPrincipal, "Selecciona un producto de la tabla", "Aviso");
+            return -1;
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -209,9 +215,12 @@ public class PnlInventario extends javax.swing.JPanel {
         rdBtnStockMayor = new javax.swing.JRadioButton();
         cmbCategorias = new javax.swing.JComboBox<>();
         btnReiniciar = new javax.swing.JButton();
+        btnStock = new javax.swing.JButton();
+        btnStockMinimo = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(232, 232, 232));
         setPreferredSize(new java.awt.Dimension(850, 800));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -228,94 +237,58 @@ public class PnlInventario extends javax.swing.JPanel {
         tableInventario.setRowHeight(35);
         jspInventario.setViewportView(tableInventario);
 
+        add(jspInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 154, 715, 560));
+
         txtIngreseDato.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        add(txtIngreseDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 65, 214, 32));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("Ingrese un dato:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 41, -1, -1));
 
         btnBuscar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 65, -1, -1));
 
         rdBtnId.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         rdBtnId.setText("ID");
+        add(rdBtnId, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
 
         rdBtnCb.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         rdBtnCb.setText("Codigo Barras");
+        add(rdBtnCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
 
         rdBtnNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         rdBtnNombre.setText("Nombre");
+        add(rdBtnNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(631, 65, -1, -1));
 
         rdBtnCategoria.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         rdBtnCategoria.setText("Categoria");
+        add(rdBtnCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, -1));
 
         rdBtnStockMenor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         rdBtnStockMenor.setText("Stock menor a");
+        add(rdBtnStockMenor, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
 
         rdBtnStockMayor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         rdBtnStockMayor.setText("Stock mayor a");
+        add(rdBtnStockMayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(631, 103, -1, -1));
 
         cmbCategorias.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         cmbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cmbCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 103, 214, 33));
 
         btnReiniciar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reiniciar.png"))); // NOI18N
+        add(btnReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 103, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jspInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtIngreseDato)
-                            .addComponent(cmbCategorias, 0, 214, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBuscar)
-                            .addComponent(btnReiniciar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdBtnId)
-                            .addComponent(rdBtnCategoria))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rdBtnStockMenor)
-                            .addComponent(rdBtnCb))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdBtnNombre)
-                            .addComponent(rdBtnStockMayor))))
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtIngreseDato)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rdBtnId)
-                        .addComponent(rdBtnCb)
-                        .addComponent(rdBtnNombre)
-                        .addComponent(btnBuscar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rdBtnCategoria)
-                        .addComponent(rdBtnStockMenor)
-                        .addComponent(rdBtnStockMayor)
-                        .addComponent(btnReiniciar))
-                    .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jspInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-        );
+        btnStock.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
+        btnStock.setText("Cambiar Stock");
+        add(btnStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 740, -1, -1));
+
+        btnStockMinimo.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
+        btnStockMinimo.setText("Cambiar Stock Minimo");
+        add(btnStockMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 740, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -323,6 +296,8 @@ public class PnlInventario extends javax.swing.JPanel {
     private javax.swing.JButton btnBuscar;
     private javax.swing.ButtonGroup btnGroupBotones;
     private javax.swing.JButton btnReiniciar;
+    private javax.swing.JButton btnStock;
+    private javax.swing.JButton btnStockMinimo;
     private javax.swing.JComboBox<String> cmbCategorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jspInventario;

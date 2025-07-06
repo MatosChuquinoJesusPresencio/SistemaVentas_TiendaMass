@@ -66,6 +66,38 @@ public class InventarioDAO extends ComponentesBD{
         }
     }
     
+    public boolean actualizarStockActual(int idProducto, int nuevoStock) throws SQLException {
+        String consulta = "UPDATE inventario SET stock_actual = ?, fecha_actualizacion = ? WHERE id_producto = ?";
+        try {
+            pst = prepararConsulta(consulta);
+            pst.setInt(1, nuevoStock);
+            pst.setObject(2, LocalDateTime.now());
+            pst.setInt(3, idProducto);
+            int filasAfectadas = ejecutarActualizacion();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar el stock actual:\n" + e.getMessage());
+        } finally {
+            cerrarRecursos();
+        }
+    }
+
+    public boolean actualizarStockMinimo(int idProducto, int nuevoStockMinimo) throws SQLException {
+        String consulta = "UPDATE inventario SET stock_minimo = ?, fecha_actualizacion = ? WHERE id_producto = ?";
+        try {
+            pst = prepararConsulta(consulta);
+            pst.setInt(1, nuevoStockMinimo);
+            pst.setObject(2, LocalDateTime.now());
+            pst.setInt(3, idProducto);
+            int filasAfectadas = ejecutarActualizacion();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar el stock mínimo:\n" + e.getMessage());
+        } finally {
+            cerrarRecursos();
+        }
+    }
+    
     public static InventarioDAO getInstancia() throws SQLException {
         if (instancia == null) {
             instancia = new InventarioDAO();
