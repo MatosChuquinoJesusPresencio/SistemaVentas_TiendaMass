@@ -17,7 +17,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private PnlCompra pnlCompra;
     private PnlInventario pnlInventario;
     private PnlReporte pnlReporte;
-    private PnlAdmin pnlAdmin;
     private SesionUsuario sesionUsuario;
     private ControladorMenu conMenu;
     
@@ -53,7 +52,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnVenta = new javax.swing.JButton();
         btnCompra = new javax.swing.JButton();
         btnInventario = new javax.swing.JButton();
-        btnAdministrar = new javax.swing.JButton();
         btnReporte = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
@@ -108,20 +106,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnAdministrar.setBackground(new java.awt.Color(232, 232, 232));
-        btnAdministrar.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        btnAdministrar.setForeground(new java.awt.Color(0, 61, 117));
-        btnAdministrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/administrador.png"))); // NOI18N
-        btnAdministrar.setText("ADMIN");
-        btnAdministrar.setEnabled(false);
-        btnAdministrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAdministrar.setPreferredSize(new java.awt.Dimension(200, 80));
-        btnAdministrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdministrarActionPerformed(evt);
-            }
-        });
-
         btnReporte.setBackground(new java.awt.Color(232, 232, 232));
         btnReporte.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         btnReporte.setForeground(new java.awt.Color(0, 61, 117));
@@ -160,8 +144,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                             .addComponent(btnCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAdministrar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlSliderLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(lblLogo)))
@@ -172,17 +155,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSliderLayout.createSequentialGroup()
                 .addContainerGap(48, Short.MAX_VALUE)
                 .addComponent(lblLogo)
-                .addGap(55, 55, 55)
+                .addGap(87, 87, 87)
                 .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(btnCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addComponent(btnInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdministrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(68, 68, 68)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
@@ -228,10 +209,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         cardLayout.show(pnlContenido, "REPORTE");
     }//GEN-LAST:event_btnReporteActionPerformed
 
-    private void btnAdministrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarActionPerformed
-        cardLayout.show(pnlContenido, "ADMIN");
-    }//GEN-LAST:event_btnAdministrarActionPerformed
-
     private void iniciarCardLayout() throws SQLException{
         cardLayout = new CardLayout();
         pnlContenido.setLayout(cardLayout);
@@ -250,8 +227,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         pnlContenido.add(pnlInventario, "INVENTARIO");
         pnlReporte = new PnlReporte(this);
         pnlContenido.add(pnlReporte, "REPORTE");
-        pnlAdmin = new PnlAdmin(this);
-        pnlContenido.add(pnlAdmin, "ADMIN");
     }
     
     private void habilitarBotones(){
@@ -266,9 +241,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         }
         if (rol.equals("Administrador") || rol.equals("Almacenero")){
             btnInventario.setEnabled(true);
-        }
-        if (rol.equals("Administrador")){
-            btnAdministrar.setEnabled(true);
         }
     }
     
@@ -309,7 +281,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdministrar;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnCompra;
     private javax.swing.JButton btnInventario;
